@@ -1,0 +1,204 @@
+
+Class moon {
+    [int] $position_x
+    [int] $position_y
+    [int] $position_z
+    [int] $velocity_x
+    [int] $velocity_y
+    [int] $velocity_z
+    [int] $pot
+    [int] $kin
+    [int] $total
+    }
+
+function Create-Moons-Test () {
+    $io = New-Object moon
+    $io.position_x = -1
+    $io.position_y = 0
+    $io.position_z = 2
+    $io.velocity_x = 0
+    $io.velocity_y = 0
+    $io.velocity_z = 0
+    $io.pot = 0
+    $io.kin = 0
+    $io.total = 0
+
+    $europa = New-Object moon
+    $europa.position_x = 2
+    $europa.position_y = -10
+    $europa.position_z = -7
+    $europa.velocity_x = 0
+    $europa.velocity_y = 0
+    $europa.velocity_z = 0
+    $europa.pot = 0
+    $europa.kin = 0
+    $europa.total = 0
+
+    $ganymede = New-Object moon
+    $ganymede.position_x = 4
+    $ganymede.position_y = -8
+    $ganymede.position_z = 8
+    $ganymede.velocity_x = 0
+    $ganymede.velocity_y = 0
+    $ganymede.velocity_z = 0
+    $ganymede.pot = 0
+    $ganymede.kin = 0
+    $ganymede.total = 0
+
+    $callisto = New-Object moon
+    $callisto.position_x = 3
+    $callisto.position_y = 5
+    $callisto.position_z = -1
+    $callisto.velocity_x = 0
+    $callisto.velocity_y = 0
+    $callisto.velocity_z = 0
+    $callisto.pot = 0
+    $callisto.kin = 0
+    $callisto.total = 0
+
+    return $io, $europa, $ganymede, $callisto 
+    }
+function Create-Moons () {
+    $io = New-Object moon
+    $io.position_x = 5
+    $io.position_y = 13
+    $io.position_z = -3
+    $io.velocity_x = 0
+    $io.velocity_y = 0
+    $io.velocity_z = 0
+    $io.pot = 0
+    $io.kin = 0
+    $io.total = 0
+
+    $europa = New-Object moon
+    $europa.position_x = 18
+    $europa.position_y = -7
+    $europa.position_z = 13
+    $europa.velocity_x = 0
+    $europa.velocity_y = 0
+    $europa.velocity_z = 0
+    $europa.pot = 0
+    $europa.kin = 0
+    $europa.total = 0
+
+    $ganymede = New-Object moon
+    $ganymede.position_x = 16
+    $ganymede.position_y = 3
+    $ganymede.position_z = 4
+    $ganymede.velocity_x = 0
+    $ganymede.velocity_y = 0
+    $ganymede.velocity_z = 0
+    $ganymede.pot = 0
+    $ganymede.kin = 0
+    $ganymede.total = 0
+
+    $callisto = New-Object moon
+    $callisto.position_x = 0
+    $callisto.position_y = 8
+    $callisto.position_z = 8
+    $callisto.velocity_x = 0
+    $callisto.velocity_y = 0
+    $callisto.velocity_z = 0
+    $callisto.pot = 0
+    $callisto.kin = 0
+    $callisto.total = 0
+
+    return $io, $europa, $ganymede, $callisto 
+    }
+function Update-Velocity ( [object] $moon1, [object] $moon2 ) {
+    
+    ## -X-
+    If ( $moon1.position_x -gt $moon2.position_x ) { 
+        ++$moon2.velocity_x 
+        --$moon1.velocity_x }
+    If ( $moon1.position_x -lt $moon2.position_x ) {
+        ++$moon1.velocity_x
+        --$moon2.velocity_x }
+
+    ## -Y-
+    If ( $moon1.position_y -gt $moon2.position_y ) { 
+        ++$moon2.velocity_y 
+        --$moon1.velocity_y }
+    If ( $moon1.position_y -lt $moon2.position_y ) {
+        ++$moon1.velocity_y
+        --$moon2.velocity_y }
+
+    ## -Z-
+    If ( $moon1.position_z -gt $moon2.position_z ) { 
+        ++$moon2.velocity_z 
+        --$moon1.velocity_z }
+    If ( $moon1.position_z -lt $moon2.position_z ) {
+        ++$moon1.velocity_z
+        --$moon2.velocity_z }
+
+
+    return $moon1, $moon2
+}
+function Update-Position ( [object] $moon ) {
+ 
+    $moon.position_x += $moon.velocity_x
+    $moon.position_y += $moon.velocity_y
+    $moon.position_z += $moon.velocity_z
+
+    return $moon
+}
+function Calculate-Energy ( [object] $moon ) {
+    
+    $moon.pot += [math]::abs($moon.position_x)
+    $moon.pot += [math]::abs($moon.position_y)
+    $moon.pot += [math]::abs($moon.position_z)
+
+    $moon.kin += [math]::abs($moon.velocity_x)
+    $moon.kin += [math]::abs($moon.velocity_y)
+    $moon.kin += [math]::abs($moon.velocity_z)
+
+    $moon.total += $moon.pot * $moon.kin
+
+
+    return $moon
+} 
+
+#####################################################################################
+
+$io, $europa, $ganymede, $callisto = Create-Moons
+$maxSteps = 1000
+clear
+
+
+## --- iterate through steps ---
+    For ($step = 1; $step -le $maxSteps; ++$step ) {
+
+        ## --- Updating VELOCITY by applying gravity ---
+
+            $io, $europa = Update-Velocity $io $europa
+            $io, $ganymede = Update-Velocity $io $ganymede
+            $io, $callisto = Update-Velocity $io $callisto
+            $europa, $ganymede = Update-Velocity $europa $ganymede
+            $europa, $callisto = Update-Velocity $europa $callisto
+            $ganymede, $callisto = Update-Velocity $ganymede $callisto
+
+
+        ## --- Updating POSITION by applying velocity ---
+
+            $io = Update-Position $io
+            $europa = Update-Position $europa
+            $ganymede = Update-Position $ganymede
+            $callisto = Update-Position $callisto
+
+    
+     }
+
+
+     ## --- Calculate energy ---
+
+        $io = Calculate-Energy $io
+        $europa = Calculate-Energy $europa
+        $ganymede = Calculate-Energy $ganymede
+        $callisto = Calculate-Energy $callisto
+
+
+    ## --- Output results ---
+        
+        $sum = $io.total + $europa.total + $ganymede.total + $callisto.total
+        Write-Host "Total energy: $sum" -ForegroundColor Green
+

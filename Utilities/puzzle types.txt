@@ -1,0 +1,24 @@
+List intersections and differences:
+    2022 d4
+
+Stacks:
+    2022 d5
+
+N-arry tree, traversal and recursions
+    2022 d7  (computer folder/file structure, finding folder sizes)
+
+2D grid
+    2022 d8 (looking horizontal and vertical lines from every cell)
+
+Drawing on screen
+    2022 d10 (computer operations and CRT (splitting long list in 6 lines on screen))
+
+Snake/Rope movement in grid
+    2022 d9
+
+Huge amount of rounds/cycles = simulation
+    2022 d11 part 2
+    2019 d12 part 2
+
+
+GCM (greatest common multiplier) and LCM (lowest common multiplier)

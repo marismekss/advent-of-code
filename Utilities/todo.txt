@@ -1,0 +1,4 @@
+2021:
+    day 17 part 2 - relatively easy, just need to find final bug
+    day 15 - possibility to lear Dijkstra algorithm
+    

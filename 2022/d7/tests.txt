@@ -1,0 +1,12 @@
+## Testing 'cd a'
+#pwd = changeLocation('a',pwd)
+#print('Current working dir: ', pwd.name)
+
+## Testing 'cd ..'
+#pwd = changeLocation('..',pwd)
+#print('Current working dir: ', pwd.name)
+
+#screenOutput = ['dir a','14848514 b.txt','8504156 c.dat','dir d']
+#listLocation(screenOutput)
+#for i in root.child:
+#    print(i.name)
