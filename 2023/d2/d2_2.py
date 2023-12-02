@@ -2,8 +2,8 @@
 #FILEPATH = "/Users/marismekss/Documents/Advent of Code/2023/d2/source-test.txt"
 FILEPATH = "/Users/marismekss/Documents/Advent of Code/2023/d2/source-prod.txt"
 
-file = open(FILEPATH, "r", encoding="utf8").read()
-src = file.split('\n')
+with open(FILEPATH, "r", encoding="utf8") as file:
+    content = file.read().split('\n')
 
 
 RESULT = 0
@@ -12,8 +12,8 @@ RESULT = 0
 class Game:
     """Class represents single game with sets of blocks"""
 
-    def __init__(self, id):
-        self.id = id
+    def __init__(self, g_id):
+        self.id = g_id
         self.sets = None
         self.invalidsets = 0
         self.fewest_blocks = {"red": 0, "green": 0, "blue": 0}
@@ -25,10 +25,10 @@ class Game:
     def check_sets(self):
         """Checks game sets and counts invalid sets"""
 
-        for set in self.sets:
+        for game_set in self.sets:
             cubes_in_set = {"red": 0, "green": 0, "blue": 0}
 
-            cubes = set.split(', ')
+            cubes = game_set.split(', ')
             for cube in cubes:
                 amount = int(cube.split()[0])
                 color = cube.split()[1]
@@ -36,15 +36,17 @@ class Game:
                 existing_val = cubes_in_set[color]
                 cubes_in_set[color] = existing_val + amount
 
-                if cubes_in_set["red"] > 12 or cubes_in_set["green"] > 13 or cubes_in_set["blue"] > 14:
+                if (cubes_in_set["red"] > 12 or
+                    cubes_in_set["green"] > 13 or
+                    cubes_in_set["blue"] > 14):
                     self.invalidsets += 1
 
 
-  
     def check_fewest(self):
-        for set in self.sets:
+        """Checks the fewest amount of colored cubes"""
+        for game_set in self.sets:
 
-            cubes = set.split(', ')
+            cubes = game_set.split(', ')
             for cube in cubes:
                 amount = int(cube.split()[0])
                 color = cube.split()[1]
@@ -60,7 +62,7 @@ class Game:
 
 
 
-for line in src:
+for line in content:
     line = line.split(': ')
     cube_id = line[0].split()[1]
     sets = line[1].split('; ')
