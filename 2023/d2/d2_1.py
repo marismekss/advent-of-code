@@ -5,9 +5,6 @@ FILEPATH = "/Users/marismekss/Documents/Advent of Code/2023/d2/source-test.txt"
 with open(FILEPATH, "r", encoding="UTF8") as file:
     content = file.read().split('\n')
 
-GAME_LIST = []
-RESULT = []
-
 
 class Game:
     """Class that defines the game with its sets and cubes"""
@@ -16,7 +13,7 @@ class Game:
         self.sets = None
         self.invalidsets = 0
 
-    def __str__(self):
+    def __repr__(self):
         return self.id
 
     def check_sets(self):
@@ -36,6 +33,9 @@ class Game:
                 self.invalidsets += 1
 
 
+RESULT = []
+
+
 for line in content:
     line = line.split(': ')
     game_id = line[0].split()[1]
@@ -43,7 +43,6 @@ for line in content:
 
     game = Game(game_id)
     game.sets = sets
-    GAME_LIST.append(game)
 
     game.check_sets()
 
@@ -51,4 +50,4 @@ for line in content:
         RESULT.append(int(game.id))
 
 
-print(sum(RESULT))
+print('Result:',sum(RESULT))

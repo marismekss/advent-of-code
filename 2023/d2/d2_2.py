@@ -6,9 +6,6 @@ with open(FILEPATH, "r", encoding="utf8") as file:
     content = file.read().split('\n')
 
 
-RESULT = 0
-
-
 class Game:
     """Class represents single game with sets of blocks"""
 
@@ -17,6 +14,7 @@ class Game:
         self.sets = None
         self.invalidsets = 0
         self.fewest_blocks = {"red": 0, "green": 0, "blue": 0}
+
 
     def __str__(self):
         return self.id
@@ -61,6 +59,8 @@ class Game:
         return self.fewest_blocks["red"] * self.fewest_blocks["green"] * self.fewest_blocks["blue"]
 
 
+
+RESULT = 0
 
 for line in content:
     line = line.split(': ')

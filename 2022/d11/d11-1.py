@@ -78,48 +78,31 @@ rounds = 20
 
 for round in range(rounds):
 
-    #monkey = monkeys[0]   #need to remove and change to for loop
     for monkey in monkeys:
-        #print('Monkey ', monkey.name)
         if len(monkey.items) > 0:
 
             tmpList = monkey.items.copy()
             for item in tmpList:
                 monkey.activity += 1
-                #print('- Monkey inspects item with worry level of',item)
                 index = monkey.items.index(item)
                 worryLevel = monkey.checkWorryLevel(item)
-                #print('--- Worry level is increased to ',worryLevel)
                 worryLevel = math.floor(worryLevel / 3)
-                #print('--- Monkey gets bored, result ', worryLevel)
-                
+
 
                 division = worryLevel / monkey.testDivision
                 if division.is_integer() == True:
-                    #print('--- Divisible by ', monkey.testDivision)
                     monkey.items.pop(index)
                     monkeys[monkey.testTrue].items.append(worryLevel)
-                    #print('--- Throw item [',worryLevel,'] to monkey ', monkey.testTrue)
                 else:
-                    #print('--- Not divisible by ', monkey.testDivision)
                     monkey.items.pop(index)
                     monkeys[monkey.testFalse].items.append(worryLevel)
-                    #print('--- Throw item [',worryLevel,'] to monkey ', monkey.testFalse)
 
 result = []
 
 print('==============================')
 for monkey in monkeys:
-    #print('Monkey ',monkey.name)
-    #print('-- Items: ', monkey.items)
-    #print('-- Activity: ', monkey.activity)
     result.append(monkey.activity)
 
 print('==============================')
-
 resultSorted = sorted(result)
 print(resultSorted[-1] * resultSorted[-2])
-
-
-
-

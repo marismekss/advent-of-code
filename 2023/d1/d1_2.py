@@ -42,16 +42,14 @@ for line in content:
 
     # Search for first digit
     for idx in range(0,len(line)):
-        res, found = match_first_digit(line, idx)
+        line, found = match_first_digit(line, idx)
         if found:
-            line = res
             break
 
     # Search for last digit
     for idx in range(len(line)-1,0, -1):
-        res, found = match_last_digit(line, idx)
+        line, found = match_last_digit(line, idx)
         if found:
-            line = res
             break
 
     # goes through string and puts all digits in list
