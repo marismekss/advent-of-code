@@ -9,6 +9,7 @@ N-arry tree, traversal and recursions
 
 2D grid
     2022 d8 (looking horizontal and vertical lines from every cell)
+    2023 d3 (looking at neighbors)
 
 Drawing on screen
     2022 d10 (computer operations and CRT (splitting long list in 6 lines on screen))
