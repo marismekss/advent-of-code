@@ -15,9 +15,9 @@ class Grid:
         self.cell = []
 
 
-        for r in range(self.row_count):
+        for _ in range(self.row_count):
             line = ''
-            for c in range(self.column_count):
+            for _ in range(self.column_count):
                 line += fill
             (self.cell).append(list(line))
 
