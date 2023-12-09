@@ -23,18 +23,6 @@ class Seed:
         return str(self.id)
 
 
-
-def check_range(inp, mapping_name):
-    """Inputs source value and gets mapped value"""
-    if inp in mapping[mapping_name]["src"]:
-        idx = mapping[mapping_name]["src"].index(inp)
-        outp = mapping[mapping_name]["dst"][idx]
-    else:
-        outp = inp
-
-    return outp
-
-
 def check_range (payload, inp):
     numbers = payload.split('\n')[1:]
 
