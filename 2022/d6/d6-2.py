@@ -1,5 +1,5 @@
-#filePath = "/Users/marismekss/Documents/Advent of Code/2022/d6/tst-input.txt"
-filePath = "/Users/marismekss/Documents/Advent of Code/2022/d6/prod-input.txt"
+#filePath = "./2022/d6/tst-input.txt"
+filePath = "./2022/d6/prod-input.txt"
 
 src = open(filePath, "r").read().split('\n')
 

@@ -1,5 +1,5 @@
-#filePath = "/Users/marismekss/Documents/Advent of Code/2022/d3/tst-input.txt"
-filePath = "/Users/marismekss/Documents/Advent of Code/2022/d3/prod-input.txt"
+#filePath = "./2022/d3/tst-input.txt"
+filePath = "./2022/d3/prod-input.txt"
 
 
 file = open(filePath, "r")

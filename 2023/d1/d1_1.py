@@ -1,6 +1,6 @@
 """AoC day 1"""
-FILEPATH = "/Users/marismekss/Documents/Advent of Code/2023/d1/source-test.txt"
-#FILEPATH = "/Users/marismekss/Documents/Advent of Code/2023/d1/source-prod.txt"
+FILEPATH = "./2023/d1/source-test.txt"
+#FILEPATH = "./2023/d1/source-prod.txt"
 
 with open(FILEPATH, "r", encoding="UTF8") as file:
     src = file.read().split('\n')
